@@ -6,20 +6,31 @@ addons:
   apt:
     sources:
       - george-edison55-precise-backports
+      - ubuntu-toolchain-r-test        
     packages:
       - cmake-data
       - cmake
+      # C++17
+      - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+      - sudo apt-get update -qq
+      - libstdc++-7-dev
 
 # Compiler selection
 compiler:
   - clang  
   - gcc
 
-# Build steps
-script:
+install: 
+  # C++17
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+  # LHC
   - mkdir build
   - cd build
   - cmake -DLHC_TEST=True ..
   - make
+
+# Build steps
+script:
   - ./lhc_tests
  
