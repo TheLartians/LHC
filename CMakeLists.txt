@@ -10,15 +10,27 @@ endif()
 # ---- Configuration variables ----
 set(LHC_TEST FALSE CACHE BOOL "build the Lars' Header Collection tests")
 
+# ---- Minimum CXX ----
+if(NOT CMAKE_CXX_STANDARD GREATER 14)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+
 # ---- Create library ----
 FILE(GLOB LarsHeaders "${CMAKE_CURRENT_SOURCE_DIR}/include/lars/*.h")
 add_library(LarsHeaderCollection EXCLUDE_FROM_ALL ${LarsHeaders})
 SET_TARGET_PROPERTIES(LarsHeaderCollection PROPERTIES LINKER_LANGUAGE CXX)
 
-set(LHC_LIBRARY LarsHeaderCollection CACHE INTERNAL "The Lars' Header Collection (LHC) Library")
+# ---- Export ----
+set(LHC_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/" CACHE INTERNAL "The Lars' Header Collection (LHC) include dir")
 
 # ---- Tests ----
 IF(LHC_TEST)
-  include((${CMAKE_CURRENT_SOURCE_DIR}/cmake/googletest.cmake)
-  
+  include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/get_catch2.cmake)
+  file(GLOB lhc_test_sources ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
+  add_executable(LHC_TESTS ${lhc_test_sources})
+  include_directories(${LHC_INCLUDE_DIRS})
+  add_dependencies(LHC_TESTS catch2-project)
+  target_link_libraries(LHC_TESTS catch2)        
 ENDIF()
+
