@@ -15,7 +15,7 @@ addons:
       - cmake
       # c++17
       - g++-7
-       - clang-5.0        
+      - clang-5.0        
 
 # Compiler selection
 compiler:
@@ -31,5 +31,5 @@ install:
 
 # Build steps
 script:
-  - ./lhc_tests
+  - ./lhc-tests
  
