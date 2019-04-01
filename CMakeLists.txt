@@ -28,9 +28,9 @@ set(LHC_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/" CACHE INTERNAL "The 
 IF(LHC_TEST)
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/get_catch2.cmake)
   file(GLOB lhc_test_sources ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
-  add_executable(LHC_TESTS ${lhc_test_sources})
+  add_executable(lhc_tests ${lhc_test_sources})
   include_directories(${LHC_INCLUDE_DIRS})
-  add_dependencies(LHC_TESTS catch2-project)
-  target_link_libraries(LHC_TESTS catch2)        
+  add_dependencies(lhc_tests catch2-project)
+  target_link_libraries(lhc_tests catch2)        
 ENDIF()
 

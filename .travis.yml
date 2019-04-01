@@ -1,0 +1,22 @@
+# Enable C++ support
+language: cpp
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
+
+# Compiler selection
+compiler:
+  - clang  
+  - gcc
+
+# Build steps
+script:
+  - mkdir build
+  - cmake -DLHC_TEST=True ..
+  - ./lhc_tests
+ 
