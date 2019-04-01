@@ -1,5 +1,6 @@
 # Enable C++ support
 language: cpp
+sudo: require
 
 addons:
   apt:
@@ -15,6 +16,7 @@ addons:
       - cmake
       # c++17
       - g++-7
+      - gcc-7
       - clang-5.0        
 
 # Compiler selection
@@ -22,7 +24,10 @@ compiler:
   - clang  
   - gcc
 
-install: 
+install:
+  - sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
+  - gcc -v && g++ -v && cmake --version   
   # LHC
   - mkdir build
   - cd build
