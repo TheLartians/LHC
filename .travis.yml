@@ -1,6 +1,7 @@
 # Enable C++ support
 language: cpp
 
+# Update cmake
 addons:
   apt:
     sources:
@@ -19,5 +20,6 @@ script:
   - mkdir build
   - cd build
   - cmake -DLHC_TEST=True ..
+  - make
   - ./lhc_tests
  
