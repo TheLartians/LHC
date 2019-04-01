@@ -11,8 +11,8 @@ endif()
 set(LHC_TEST FALSE CACHE BOOL "build the Lars' Header Collection tests")
 
 # ---- Minimum CXX ----
-if(NOT CMAKE_CXX_STANDARD GREATER 14)
-  set(CMAKE_CXX_STANDARD 14)
+if(NOT CMAKE_CXX_STANDARD GREATER 17)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 
@@ -26,6 +26,7 @@ set(LHC_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/" CACHE INTERNAL "The 
 
 # ---- Tests ----
 IF(LHC_TEST)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/get_catch2.cmake)
   file(GLOB lhc_test_sources ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
   add_executable(lhc_tests ${lhc_test_sources})
