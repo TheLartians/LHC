@@ -17,6 +17,7 @@ compiler:
 # Build steps
 script:
   - mkdir build
+  - cd build
   - cmake -DLHC_TEST=True ..
   - ./lhc_tests
  
