@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 # ---- Project ----
-project(LarsHeaderCollection CXX)
+project(LHC CXX)
 
 if(${PROJECT_SOURCE_DIR} STREQUAL ${PROJECT_BINARY_DIR})
     message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.")
@@ -15,14 +15,30 @@ if(NOT CMAKE_CXX_STANDARD GREATER 17)
   set(CMAKE_CXX_STANDARD 17)
 endif()
 
+# ---- Header target ----
+FILE(GLOB headers "${CMAKE_CURRENT_SOURCE_DIR}/include/lars/*.h")
+add_library(LHC-headers EXCLUDE_FROM_ALL ${headers})
+SET_TARGET_PROPERTIES(LHC-headers PROPERTIES LINKER_LANGUAGE CXX)
 
 # ---- Create library ----
-FILE(GLOB LarsHeaders "${CMAKE_CURRENT_SOURCE_DIR}/include/lars/*.h")
-add_library(LarsHeaderCollection EXCLUDE_FROM_ALL ${LarsHeaders})
-SET_TARGET_PROPERTIES(LarsHeaderCollection PROPERTIES LINKER_LANGUAGE CXX)
 
-# ---- Export ----
-set(LHC_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/" CACHE INTERNAL "The Lars' Header Collection (LHC) include dir")
+add_library(LHC INTERFACE)
+
+target_include_directories(LHC INTERFACE 
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+# ---- Install ----
+
+install(TARGETS LHC
+    EXPORT LHCTargets
+    LIBRARY DESTINATION lib COMPONENT Runtime
+    ARCHIVE DESTINATION lib COMPONENT Development
+    RUNTIME DESTINATION bin COMPONENT Runtime
+    PUBLIC_HEADER DESTINATION include COMPONENT Development
+    BUNDLE DESTINATION bin COMPONENT Runtime
+)
 
 # ---- Tests ----
 IF(LHC_TEST)
@@ -30,8 +46,8 @@ IF(LHC_TEST)
   include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/get_catch2.cmake)
   file(GLOB lhc_test_sources ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
   add_executable(lhc-tests ${lhc_test_sources})
-  include_directories(${LHC_INCLUDE_DIRS})
   add_dependencies(lhc-tests catch2-project)
-  target_link_libraries(lhc-tests catch2)        
+  target_link_libraries(lhc-tests catch2)
+  target_link_libraries(lhc-tests LHC)
 ENDIF()
 
