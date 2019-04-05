@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # ---- Include guard ----
 
 if(TARGET LHC)
-    return() # The project has already been built.
+  return() # The project has already been built.
 endif()
 
 # ---- Project ----
