@@ -54,6 +54,17 @@ configure_package_config_file(
   INSTALL_DESTINATION lib/cmake/mylib
 )
 
+install(EXPORT LHCTargets DESTINATION lib/cmake/mylib)
+install(
+    FILES "${PROJECT_BINARY_DIR}/LHCConfigVersion.cmake"
+    "${PROJECT_BINARY_DIR}/LHCConfig.cmake"
+     DESTINATION lib/cmake/mylib
+)
+
+install(
+  DIRECTORY ${PROJECT_SOURCE_DIR}/include/
+  DESTINATION include
+)
 
 # ---- Tests ----
 IF(LHC_TEST)
