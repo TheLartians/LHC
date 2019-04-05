@@ -1,4 +1,5 @@
 # Enable C++ support
+
 language: cpp
 sudo: require
 
@@ -30,12 +31,14 @@ install:
   - sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
   - gcc -v && g++ -v && cmake --version   
   # LHC
-  - mkdir build
-  - cd build
-  - cmake -DENABLE_TESTS=True ..
-  - make
+  - cmake -Bbuild .
+  - cmake --build build
+  - cmake --build build --target install
 
 # Build steps
 script:
-  - ./lhc-tests
+  - cmake -Bbuild/test tests  
+  - cmake --build build/test
+  - CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
  
+
