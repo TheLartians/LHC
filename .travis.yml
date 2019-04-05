@@ -1,4 +1,3 @@
-# Enable C++ support
 
 language: cpp
 sudo: require
