@@ -47,6 +47,14 @@ install(TARGETS LHC
     BUNDLE DESTINATION bin COMPONENT Runtime
 )
 
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+  "${PROJECT_SOURCE_DIR}/cmake/LHCConfig.cmake.in"
+  "${PROJECT_BINARY_DIR}/LHCConfig.cmake"
+  INSTALL_DESTINATION lib/cmake/mylib
+)
+
+
 # ---- Tests ----
 IF(LHC_TEST)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
