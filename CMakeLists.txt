@@ -51,14 +51,14 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
   "${PROJECT_SOURCE_DIR}/cmake/LHCConfig.cmake.in"
   "${PROJECT_BINARY_DIR}/LHCConfig.cmake"
-  INSTALL_DESTINATION lib/cmake/mylib
+  INSTALL_DESTINATION lib/cmake/LHC
 )
 
-install(EXPORT LHCTargets DESTINATION lib/cmake/mylib)
+install(EXPORT LHCTargets DESTINATION lib/cmake/LHC)
 install(
     FILES "${PROJECT_BINARY_DIR}/LHCConfigVersion.cmake"
     "${PROJECT_BINARY_DIR}/LHCConfig.cmake"
-     DESTINATION lib/cmake/mylib
+     DESTINATION lib/cmake/LHC
 )
 
 install(
