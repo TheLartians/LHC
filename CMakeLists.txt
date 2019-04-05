@@ -1,29 +1,18 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
+# ---- Project ----
+
+project(LHC CXX)
+
 # ---- Configuration variables ----
 
 option(ENABLE_TESTS "Enable tests" OFF)
-option(USE_LIB_IF_AVAILABLE "use installed library if available" OFF)
 
 # ---- Include guards ----
-
-if (USE_LIB_IF_AVAILABLE)
-  if(TARGET LHC)
-    return()
-  endif()
-  find_package(LHC 0.1 QUIET)
-  if(${LHC_FOUND})
-    return()
-  endif()
-endif()
 
 if(${PROJECT_SOURCE_DIR} STREQUAL ${PROJECT_BINARY_DIR})
     message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.")
 endif()
-
-# ---- Project ----
-
-project(LHC CXX)
 
 # ---- Header target ----
 
