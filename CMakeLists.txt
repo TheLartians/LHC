@@ -29,6 +29,13 @@ target_include_directories(LHC INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${PROJECT_BINARY_DIR}/LHCConfigVersion.cmake"
+    VERSION v0.1
+    COMPATIBILITY AnyNewerVersion
+)
+
 # ---- Install ----
 
 install(TARGETS LHC
