@@ -16,7 +16,7 @@ matrix:
         sources: *all_sources
         packages: ['g++-8']
     env:
-      - MATRIX_EVAL="export CC=g++-8 && export CXX=g++-8"
+      - MATRIX_EVAL="sudo ln -s /usr/bin/gcc-8 /usr/local/bin/gcc && sudo ln -s /usr/bin/g++-8 /usr/local/bin/g++"
 
   - os: linux
     compiler: clang
@@ -25,7 +25,7 @@ matrix:
             sources: *all_sources
             packages: ['clang-5.0']
     env:
-      - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0"
+      - MATRIX_EVAL="sudo ln -s /usr/bin/clang-5.0 /usr/local/bin/clang && sudo ln -s /usr/bin/clang++-5.0 /usr/local/bin/clang"
 
 before_install:
   # Update compilers
