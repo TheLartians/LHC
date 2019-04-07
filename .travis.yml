@@ -18,15 +18,15 @@ matrix:
       apt:
         sources: *all_sources
         packages: ['g++-8']
-    env: CXX='g++-8'
+    env: COMPILER='g++-8'
 
   - os: linux
-    compiler: clang
+    compiler: clang-6.0
     addons:
         apt:
             sources: *all_sources
             packages: ['clang-6.0']
-    env: CXX='clang++-6.0'
+    env: COMPILER='clang++-6.0'
 
 before_install:
  # Install a supported cmake version (>= 3.5)
