@@ -26,9 +26,9 @@ matrix:
     addons:
         apt:
             sources: *all_sources
-            packages: ['clang-6.0']
+            packages: ['clang-5.0']
     env:
-      - MATRIX_EVAL="export CC=clang-6.0 && export CXX=clang++-6.0"
+      - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0"
 
 before_install:
   # Update compilers
