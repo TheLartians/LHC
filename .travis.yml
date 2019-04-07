@@ -25,7 +25,7 @@ matrix:
             sources: *all_sources
             packages: ['clang-5.0']
     env:
-      - MATRIX_EVAL="sudo ln -s /usr/bin/clang-5.0 /usr/local/bin/clang && sudo ln -s /usr/bin/clang++-5.0 /usr/local/bin/clang"
+      - MATRIX_EVAL="sudo ln -s /usr/bin/clang-5.0 /usr/local/bin/clang && sudo ln -s /usr/bin/clang++-5.0 /usr/local/bin/clang++"
 
 before_install:
   # Update compilers
