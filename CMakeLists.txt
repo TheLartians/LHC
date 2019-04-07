@@ -6,7 +6,7 @@ project(LHC CXX)
 
 # ---- Configuration variables ----
 
-option(ENABLE_TESTS "Enable tests" OFF)
+option(ENABLE_LHC_TESTS "Enable tests" OFF)
 
 # ---- Include guards ----
 
@@ -78,7 +78,7 @@ install(
 
 # ---- Test ----
 
-if(${ENABLE_TESTS})
+if(${ENABLE_LHC_TESTS})
   ENABLE_TESTING()  
   add_subdirectory(tests)  
 endif()
