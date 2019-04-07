@@ -19,7 +19,7 @@ matrix:
         sources: *all_sources
         packages: ['g++-8']
     env:
-      - MATRIX_EVAL="CC=g++-8 && CXX=g++-8"
+      - MATRIX_EVAL="export CC=g++-8 && export CXX=g++-8"
 
   - os: linux
     compiler: clang
@@ -28,7 +28,7 @@ matrix:
             sources: *all_sources
             packages: ['clang-6.0']
     env:
-      - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+      - MATRIX_EVAL="export CC=clang-6.0 && export CXX=clang++-6.0"
 
 before_install:
   # Update compilers
