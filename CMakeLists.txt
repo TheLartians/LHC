@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # ---- Project ----
 
 project(LHC 
-  VERSION 0.3
+  VERSION 0.4
   LANGUAGES CXX
 )
 # ---- Configuration variables ----
