@@ -10,10 +10,7 @@
 #include <algorithm>
 
 namespace lars {
-  
-#pragma mark Range
-#pragma mark -
-  
+    
 #if defined(__GNUC__)
 #  define UNUSED __attribute__ ((unused))
 #elif defined(_MSC_VER)
@@ -78,10 +75,7 @@ namespace lars {
   template<class T> range_wrapper<T> range(const T &end) { return range_wrapper<T>(0, end, 1); }
   
   template <class C> range_wrapper<size_t> indices(const C &c){ return range<size_t>(c.size()); }
-  
-#pragma mark Reverse
-#pragma mark -
-  
+    
   template<class T> struct reverse_wrapper{
     T & obj;
     typedef typename T::reverse_iterator iterator;
@@ -122,10 +116,6 @@ namespace lars {
     const_reverse_iterator rbegin()const{ return obj.begin(); }
     const_reverse_iterator rend()const{ return obj.end(); }
   };
-
-
-#pragma mark Split
-#pragma mark -
 
   template<class string_type> class string_ref{
   private:
@@ -180,8 +170,6 @@ namespace lars {
   if( state == inToken ) result.push_back( string_ref<string_type>( pTokenBegin, &str.back() - pTokenBegin + 1 ) );
   return result;
   }
-
-#pragma mark subarrays
   
   class subarray_indices{
     public:
@@ -282,9 +270,7 @@ namespace lars {
     iterator end()const{ return eit; }
     
   };
-  
-#pragma mark enumerate
-  
+    
   template <typename iterator> class enumerate_iterator{
     iterator it;
     unsigned idx = 0;
@@ -320,9 +306,7 @@ namespace lars {
   template <typename T> enumerate_iterator_wrapper<typename T::const_iterator> enumerate(const T & arr){
     return enumerate_iterator_wrapper<typename T::const_iterator>(arr.begin(),arr.end());
   }
-  
-#pragma mark slice
-  
+    
   template <typename iterator> class slice_wrapper{
     iterator bit,eit;
   public:
