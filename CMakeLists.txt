@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # ---- Project ----
 
 project(LHC 
-  VERSION 0.7
+  VERSION 0.8
   LANGUAGES CXX
 )
+
 # ---- Configuration variables ----
 
 option(ENABLE_LHC_TESTS "Enable tests" OFF)
