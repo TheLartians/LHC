@@ -33,7 +33,7 @@ add_library(LHC INTERFACE)
 
 target_include_directories(
   LHC INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-                $<INSTALL_INTERFACE:${PROJECT_NAME}-${PROJECT_VERSION}>)
+                $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>)
 
 # ---- Install ----
 
