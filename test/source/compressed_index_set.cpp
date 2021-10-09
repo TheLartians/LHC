@@ -10,7 +10,7 @@ TEST_CASE("CompressedIndexSet") {
   indices.remove_index(-3);
   indices.remove_index(10);
   auto current = -10;
-  for (auto index: indices) {
+  for (auto index : indices) {
     if (current == -3) {
       current++;
     }
@@ -19,4 +19,3 @@ TEST_CASE("CompressedIndexSet") {
   REQUIRE(current == 10);
   REQUIRE(lars::stream_to_string(indices) == "{[-10,-4],[-2,9]}");
 }
-
