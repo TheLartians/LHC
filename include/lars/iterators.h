@@ -26,14 +26,19 @@ template <class T> class range_wrapper {
 public:
   using value_type = T;
 
-  class const_iterator
-      : public std::iterator<std::bidirectional_iterator_tag, T> {
+  class const_iterator {
 
   private:
     T current;
     const T increment;
 
   public:
+    using value_type = T;
+    using reference = const T &;
+    using pointer = const T *;
+    using iterator_category = std::bidirectional_iterator_tag;
+    using difference_type = size_t;
+
     const_iterator(const T &current, const T &increment)
         : current(current), increment(increment) {}
 
@@ -221,14 +226,19 @@ split(const string_type &str,
 
 class subarray_indices {
 public:
-  class iterator
-      : public std::iterator<std::forward_iterator_tag, std::vector<unsigned>> {
+  class iterator {
   protected:
     std::vector<unsigned> positions;
     unsigned N;
     unsigned size;
 
   public:
+    using value_type = unsigned;
+    using reference = const unsigned &;
+    using pointer = const unsigned *;
+    using iterator_category = std::bidirectional_iterator_tag;
+    using difference_type = size_t;
+
     iterator() = default;
     iterator(const iterator &) = default;
     virtual ~iterator() {}
